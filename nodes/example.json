@@ -1,0 +1,38 @@
+{
+  "run_list": [
+    "recipe[mhc]",
+    "recipe[mhc::users]",
+    "recipe[mhc::ssh]",
+    "recipe[mhc::nodejs]",
+    "recipe[mhc::postgres]",
+    "recipe[mhc::rbenv]",
+    "recipe[mhc::redis]",
+    "recipe[mhc::app]",
+    "recipe[mhc::puma]",
+    "recipe[mhc::nginx_passenger]",
+    "recipe[mhc::sidekiq]"
+  ],
+
+  "user": {
+    "password": ""
+  },
+
+  "db": {
+    "user_name": "",
+    "password": "",
+    "root_password": ""
+  },
+
+  "secrets": {
+    "secret_key_base": "",
+    "devise_secret_key": ""
+  },
+
+  "smtp": {
+    "login": "",
+    "password": "",
+    "port": "",
+    "server": "",
+    "authentication": "",
+  }
+}

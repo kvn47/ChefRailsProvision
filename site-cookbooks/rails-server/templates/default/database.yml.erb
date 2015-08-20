@@ -1,0 +1,8 @@
+<%= node.rails_env %>:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= node.app %>
+  pool: 5
+  host: localhost
+  username: <%= node.db.user_name %>
+  password: <%= node.db.password %>

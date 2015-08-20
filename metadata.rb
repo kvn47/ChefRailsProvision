@@ -1,7 +1,0 @@
-name             'Rails application server'
-maintainer       'Vladimir Kochergin'
-maintainer_email 'kvn047@gmail.com'
-license          'All rights reserved'
-description      'Installs/Configures rails application server'
-long_description 'Installs/Configures rails application server'
-version          '0.1.0'
