@@ -1,5 +1,6 @@
 user www-data;
-worker_processes <%= node.nginx_passenger.nginx_workers %>;
+#worker_processes <%= node.nginx_passenger.nginx_workers %>;
+worker_processes auto;
 pid /var/run/nginx.pid;
 
 <% if node.nginx_passenger.keep_env_path %>

@@ -1,0 +1,7 @@
+alias cdapp='cd <%= node.app_path %>'
+alias nginxerrors='tail -f /var/log/nginx/error.log'
+alias nginxaccess='tail -f /var/log/nginx/access.log'
+alias weberrors='tail -f <%= node.app_shared_path %>/log/nginx_error.log'
+alias webaccess='tail -f <%= node.app_shared_path %>/log/nginx_access.log'
+alias pumaaccess='tail -f <%= node.app_shared_path %>/log/puma_access.log'
+alias pumaerrors='tail -f <%= node.app_shared_path %>/log/puma_error.log'

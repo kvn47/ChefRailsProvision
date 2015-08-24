@@ -4,7 +4,7 @@
 #
 # The default is the current directory.
 #
-# directory '/u/apps/lolcat'
+directory '<%= node.app_path %>'
 
 # Use an object or block as the rack application. This allows the
 # config file to be the application itself.
@@ -22,12 +22,13 @@
 # The default is “config.ru”.
 #
 # rackup '/u/apps/lolcat/config.ru'
+rackup '<%= node.app_path %>/cable/config.ru'
 
 # Set the environment in which the rack's app will run. The value must be a string.
 #
 # The default is “development”.
 #
-environment '<%= node['rails_env'] %>'
+environment '<%= node.rails_env %>'
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with “pidfile” and “stdout_redirect”.
@@ -39,19 +40,22 @@ daemonize
 
 # Store the pid of the server in the file at “path”.
 #
-pidfile '<%= node['app_shared_path'] %>/tmp/pids/puma.pid'
+pidfile '<%= node.app_shared_path %>/tmp/pids/puma.pid'
 
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
 #
-state_path '<%= node['app_shared_path'] %>/tmp/pids/puma.state'
+state_path '<%= node.app_shared_path %>/tmp/pids/puma.state'
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
 # “false”.
 #
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr'
-stdout_redirect '<%= node['app_shared_path'] %>/log/stdout', '<%= node['app_shared_path'] %>/log/stderr', true
+# stdout_redirect '<%= node.app_shared_path %>/log/stdout', '<%= node.app_shared_path %>/log/stderr', true
+stdout_redirect '<%= node.app_shared_path %>/log/puma_access.log',
+                '<%= node.app_shared_path %>/log/puma_error.log',
+                true
 
 # Disable request logging.
 #
@@ -75,7 +79,7 @@ stdout_redirect '<%= node['app_shared_path'] %>/log/stdout', '<%= node['app_shar
 # bind 'unix:///var/run/puma.sock'
 # bind 'unix:///var/run/puma.sock?umask=0777'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
-bind 'unix:/tmp/<%= node['app'] %>.sock'
+bind 'unix:<%= node.app_shared_path %>/tmp/sockets/puma.sock'
 
 # Instead of “bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'” you
 # can also use the “ssl_bind” option.
@@ -103,7 +107,7 @@ bind 'unix:/tmp/<%= node['app'] %>.sock'
 #
 # The default is “0”.
 #
-# workers 2
+workers 1
 
 # Code to run when a worker boots to setup the process before booting
 # the app.
@@ -113,11 +117,11 @@ bind 'unix:/tmp/<%= node['app'] %>.sock'
 # on_worker_boot do
 #   puts 'On worker boot...'
 # end
-on_worker_boot do
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
-  end
-end
+# on_worker_boot do
+#   ActiveSupport.on_load(:active_record) do
+#     ActiveRecord::Base.establish_connection
+#   end
+# end
 
 # === Puma control rack application ===
 
@@ -133,3 +137,4 @@ end
 # activate_control_app 'unix:///var/run/pumactl.sock'
 # activate_control_app 'unix:///var/run/pumactl.sock', { auth_token: '12345' }
 # activate_control_app 'unix:///var/run/pumactl.sock', { no_token: true }
+activate_control_app

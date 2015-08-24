@@ -62,6 +62,7 @@ exec /bin/bash <<'EOT'
   # Logs out to /var/log/upstart/sidekiq.log by default
 
   cd <%= node.app_path %>
-  exec bundle exec sidekiq -i ${index} -e production
+  exec bundle exec sidekiq -i ${index} -e <%= node.rails_env %>
+  #exec bin/sidekiq -i ${index} -e <%= node.rails_env %>
 EOT
 end script
