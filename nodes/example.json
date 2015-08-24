@@ -1,16 +1,16 @@
 {
   "run_list": [
-    "recipe[mhc]",
-    "recipe[mhc::users]",
-    "recipe[mhc::ssh]",
-    "recipe[mhc::nodejs]",
-    "recipe[mhc::postgres]",
-    "recipe[mhc::rbenv]",
-    "recipe[mhc::redis]",
-    "recipe[mhc::app]",
-    "recipe[mhc::puma]",
-    "recipe[mhc::nginx_passenger]",
-    "recipe[mhc::sidekiq]"
+    "recipe[rails-server]",
+    "recipe[rails-server::users]",
+    "recipe[rails-server::ssh]",
+    "recipe[rails-server::nodejs]",
+    "recipe[rails-server::postgres]",
+    "recipe[rails-server::rbenv]",
+    "recipe[rails-server::redis]",
+    "recipe[rails-server::app]",
+    "recipe[rails-server::puma]",
+    "recipe[rails-server::nginx_passenger]",
+    "recipe[rails-server::sidekiq]"
   ],
 
   "user": {
