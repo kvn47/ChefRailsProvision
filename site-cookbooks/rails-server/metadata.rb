@@ -1,4 +1,4 @@
-name             'mhc'
+name             'rails-server'
 maintainer       'Vladimir Kochergin'
 maintainer_email 'kvn047@gmail.com'
 license          'All rights reserved'
