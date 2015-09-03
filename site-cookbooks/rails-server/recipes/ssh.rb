@@ -53,7 +53,7 @@ end
 
 # copy authorized_keys
 file "/home/#{node.user.name}/.ssh/authorized_keys" do
-  content IO.read('~/.ssh/authorized_keys')
+  content IO.read('/root/.ssh/authorized_keys')
   action :create
   owner node.user.name
   group node.group
