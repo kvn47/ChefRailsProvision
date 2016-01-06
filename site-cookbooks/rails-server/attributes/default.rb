@@ -30,7 +30,7 @@ default['nodejs']['dir'] = '/usr/local'
 default['nodejs']['version'] = '0.12.7'
 
 default['redis']['version'] = '3.0.3'
-default['ruby']['version'] = '2.2.2'
+default['ruby']['version'] = '2.3.0'
 default['puma']['version'] = '2.13.4'
 
 default['nginx_passenger']['nginx_workers'] = 4
