@@ -13,6 +13,10 @@
     "recipe[rails-server::sidekiq]"
   ],
 
+  "app": "",
+  "app_path": "",
+  "app_shared_path": "",
+
   "user": {
     "password": ""
   },
@@ -24,6 +28,10 @@
   },
 
   "secrets": {
+    "admin_name": "",
+    "admin_password": "",
+    "http_auth_name": "",
+    "http_auth_password": "",
     "secret_key_base": "",
     "devise_secret_key": ""
   },
