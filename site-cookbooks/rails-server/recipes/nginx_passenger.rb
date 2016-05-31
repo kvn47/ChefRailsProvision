@@ -18,10 +18,10 @@ end
 package "passenger"
 package "nginx-extras"
 
-service "nginx" do
-  action    %i[enable start]
-  supports  %i[enable start stop disable reload restart]
-end
+# service "nginx" do
+#   action    %i[enable start]
+#   supports  %i[enable start stop disable reload restart]
+# end
 
 # set nginx conf
 template "/etc/nginx/nginx.conf" do
@@ -34,7 +34,7 @@ template "/etc/nginx/sites-enabled/#{node['app']}" do
   mode 0644
   owner node['user']['name']
   group node['group']
-  notifies :restart, 'service[nginx]', :delayed
+  # notifies :restart, 'service[nginx]', :delayed
 end
 
 # remove default nginx config
