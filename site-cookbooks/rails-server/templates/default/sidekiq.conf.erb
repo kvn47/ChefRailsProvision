@@ -50,7 +50,7 @@ script
 exec /bin/bash <<'EOT'
   # Pick your poison :) Or none if you're using a system wide installed Ruby.
   # rbenv
-  # source /home/apps/.bash_profile
+  source /home/<%= node.user.name %>/.bash_profile
   # OR
   # source /home/apps/.profile
   # OR system:
