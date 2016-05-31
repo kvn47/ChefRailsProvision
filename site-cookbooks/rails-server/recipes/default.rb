@@ -31,6 +31,7 @@ package 'build-essential'
 package 'tree'
 package 'imagemagick'
 package 'libmagickwand-dev'
+package 'ghostscript'
 
 # set timezone
 bash 'set timezone' do
