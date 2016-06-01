@@ -6,15 +6,15 @@ directory '/var/www' do
 end
 
 # create shared directory structure for app
-path = "/var/www/#{node['app']}/shared/config"
-execute "mkdir -p #{path}" do
+config_path = "/var/www/#{node['app']}/shared/config"
+execute "mkdir -p #{config_path}" do
   user node.user.name
   group node.group
-  creates path
+  creates config_path
 end
 
 # create database.yml file
-template "#{path}/database.yml" do
+template "#{config_path}/database.yml" do
   source 'database.yml.erb'
   mode 0640
   owner node.user.name
@@ -22,20 +22,20 @@ template "#{path}/database.yml" do
 end
 
 # create secrets.yml file
-# template "#{path}/secrets.yml" do
-#   source 'secrets.yml.erb'
-#   mode 0640
-#   owner node.user.name
-#   group node.group
-# end
-
-# create .env file
-template "/var/www/#{node['app']}/shared/.env" do
-  source '.env.erb'
+template "#{config_path}/secrets.yml" do
+  source 'secrets.yml.erb'
   mode 0640
   owner node.user.name
   group node.group
 end
+
+# create .env file
+# template "/var/www/#{node['app']}/shared/.env" do
+#   source '.env.erb'
+#   mode 0640
+#   owner node.user.name
+#   group node.group
+# end
 
 # set unicorn config
 # template "/etc/init.d/unicorn_#{node['app']}" do

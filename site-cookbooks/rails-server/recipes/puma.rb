@@ -31,9 +31,8 @@ template "#{node['app_shared_path']}/config/puma.rb" do
   # notifies :restart, 'service[puma]', :delayed
 end
 
-service 'puma-manager' do
-  provider Chef::Provider::Service::Upstart
-  # supports %i[start stop restart status]
-  supports %i[start stop restart]
-  action :start
-end
+# service 'puma-manager' do
+#   provider Chef::Provider::Service::Upstart
+#   supports %i[start stop restart status]
+#   action :start
+# end
