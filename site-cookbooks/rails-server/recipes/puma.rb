@@ -33,6 +33,7 @@ end
 
 service 'puma-manager' do
   provider Chef::Provider::Service::Upstart
-  supports %i[start stop restart status]
+  # supports %i[start stop restart status]
+  supports %i[start stop restart]
   action :start
 end
