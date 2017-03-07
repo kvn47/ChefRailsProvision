@@ -18,8 +18,10 @@ server {
   <% end %>
   server_name <%= node.domain_name %>;
   keepalive_timeout 5;
-  access_log <%= node.app_shared_path %>/log/<%= node.app %>.access.log;
-  error_log <%= node.app_shared_path %>/log/<%= node.app %>.error.log;
+  access_log /var/www/log/<%= node.app %>.access.log;
+  error_log /var/www/log/<%= node.app %>.error.log;
+
+  passenger_env_var RAILS_LOG_TO_STDOUT true;
   location / {
     root <%= node.app_path %>/public;
     passenger_enabled on;
@@ -29,6 +31,11 @@ server {
     passenger_user <%= node.user.name %>;
     passenger_min_instances <%= node.nginx_passenger.site_min_instances %>;
     client_max_body_size <%= node.nginx_passenger.site_max_body_size %>;
+  }
+
+  location /cable {
+    passenger_app_group_name mhc_cable;
+    passenger_force_max_concurrent_requests_per_process 0;
   }
 }
 

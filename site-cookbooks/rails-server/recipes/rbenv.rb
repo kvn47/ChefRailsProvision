@@ -27,7 +27,7 @@ bash 'install ruby' do
     export RBENV_ROOT="${HOME}/.rbenv"
     export PATH="${RBENV_ROOT}/bin:${PATH}"
     rbenv init -
-
+    rbenv update
     rbenv install #{node['ruby']['version']}
     rbenv global #{node['ruby']['version']}
     echo 'gem: -–no-ri -–no-rdoc' > .gemrc

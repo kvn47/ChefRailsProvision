@@ -30,14 +30,17 @@ default['nodejs']['dir'] = '/usr/local'
 default['nodejs']['version'] = '0.12.7'
 
 default['redis']['version'] = '3.0.3'
-default['ruby']['version'] = '2.3.1'
+default['ruby']['version'] = '2.3.3'
 default['puma']['version'] = '3.1.0'
+default['postgresql']['version'] = '9.5'
+
+default['nginx_passenger']['log_dir'] = '/var/www/log'
 
 default['nginx_passenger']['nginx_workers'] = 4
 default['nginx_passenger']['nginx_connections'] = 768
 default['nginx_passenger']['catch_default'] = false
 
-default['nginx_passenger']['ruby'] = "/usr/bin/passenger_free_ruby"
+default['nginx_passenger']['ruby'] = '/usr/bin/passenger_free_ruby'
 # default.nginx_passenger.ruby                  = "/usr/bin/ruby"
 default['nginx_passenger']['max_pool_size'] = 8
 default['nginx_passenger']['max_instances_per_app'] = 0
@@ -46,11 +49,11 @@ default['nginx_passenger']['pool_idle_time'] = 300
 default['nginx_passenger']['max_requests'] = 0
 
 default['nginx_passenger']['use_ssl'] = false
-default['nginx_passenger']['cert_databag'] = "ssl_certs"
-default['nginx_passenger']['cert_authority'] = "Self Signed"
+default['nginx_passenger']['cert_databag'] = 'ssl_certs'
+default['nginx_passenger']['cert_authority'] = 'Self Signed'
 
 default['nginx_passenger']['site_min_instances'] = 2
-default['nginx_passenger']['site_max_body_size'] = "8M"
+default['nginx_passenger']['site_max_body_size'] = '8M'
 default['nginx_passenger']['keep_env_path'] = true
 
 default['sidekiq']['workers'] = 1

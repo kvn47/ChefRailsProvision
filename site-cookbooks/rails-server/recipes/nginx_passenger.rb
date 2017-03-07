@@ -1,8 +1,8 @@
-include_recipe "apt"
+# include_recipe "apt"
 
-package "apt-transport-https"
+package 'apt-transport-https'
 
-apt_repository 'phusion' do
+apt_repository 'passenger' do
   action        :add
   uri           'https://oss-binaries.phusionpassenger.com/apt/passenger'
   distribution  node.lsb.codename
@@ -15,22 +15,25 @@ package 'nginx-common' do
   options '-o DPkg::Options::="--force-confold"'
 end
 
-package "passenger"
-package "nginx-extras"
+package 'passenger'
+package 'nginx-extras'
 
-# service "nginx" do
-#   action    %i[enable start]
-#   supports  %i[enable start stop disable reload restart]
-# end
+service 'nginx' do
+  action    %i[enable start]
+  supports  %i[enable start stop disable reload restart]
+  # supports %i[status restart]
+  # action :start
+end
 
 # set nginx conf
-template "/etc/nginx/nginx.conf" do
-  action :create
+template '/etc/nginx/nginx.conf' do
+  source 'nginx-passenger.conf.erb'
+  # action :create
 end
 
 # set nginx site config
-template "/etc/nginx/sites-enabled/#{node['app']}" do
-  source 'site.conf.erb'
+template "/etc/nginx/sites-enabled/#{node['app']}.conf" do
+  source 'site-passenger.conf.erb'
   mode 0644
   owner node['user']['name']
   group node['group']
@@ -49,9 +52,9 @@ end
 #   mode        0755
 # end
 
-# directory node.nginx_passenger.log_dir do
-#   action :create
-#   recursive true
-#   mode 0755
-#   owner 'www-data'
-# end
+directory node.nginx_passenger.log_dir do
+  action :create
+  recursive true
+  mode 0755
+  owner 'www-data'
+end

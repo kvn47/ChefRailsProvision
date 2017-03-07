@@ -1,15 +1,5 @@
-apt_repository 'postgresql' do
-  action :add
-  uri 'http://apt.postgresql.org/pub/repos/apt'
-  distribution "#{node.lsb.codename}-pgdg"
-  components ['main']
-  keyserver 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
-end
-
-execute 'apt-get update'
-
-package "postgresql-#{node.postgresql.version}"
-package "postgresql-contrib-#{node.postgresql.version}"
+package 'postgresql'
+package 'postgresql-contrib'
 
 # change postgres password
 execute 'change postgres password' do

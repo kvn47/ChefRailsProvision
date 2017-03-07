@@ -1,6 +1,6 @@
 # tell chef about ssh service
 service 'ssh' do
-  provider Chef::Provider::Service::Upstart
+  # provider Chef::Provider::Service
   # supports %i[status restart]
   supports %i[restart]
 end

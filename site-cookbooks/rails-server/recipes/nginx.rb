@@ -7,16 +7,16 @@ execute "rm -f #{default_path}" do
 end
 
 # start nginx
-service 'nginx' do
-  supports %i[status restart]
-  action :start
-end
+# service 'nginx' do
+#   supports %i[status restart]
+#   action :start
+# end
 
 # set custom nginx config
-template "/etc/nginx/sites-enabled/#{node['app']}" do
-  source 'nginx.conf.erb'
+template "/etc/nginx/sites-enabled/#{node['app']}.conf" do
+  source 'site-puma.conf.erb'
   mode 0644
   owner node['user']['name']
   group node['group']
-  notifies :restart, 'service[nginx]', :delayed
+  # notifies :restart, 'service[nginx]', :delayed
 end

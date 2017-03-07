@@ -22,7 +22,7 @@ directory '<%= node.app_path %>'
 # The default is “config.ru”.
 #
 # rackup '/u/apps/lolcat/config.ru'
-rackup '<%= node.app_path %>/cable/config.ru'
+# rackup '<%= node.app_path %>/cable/config.ru'
 
 # Set the environment in which the rack's app will run. The value must be a string.
 #
@@ -53,8 +53,8 @@ state_path '<%= node.app_shared_path %>/tmp/pids/puma.state'
 #
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr'
 # stdout_redirect '<%= node.app_shared_path %>/log/stdout', '<%= node.app_shared_path %>/log/stderr', true
-stdout_redirect '<%= node.app_shared_path %>/log/puma_access.log',
-                '<%= node.app_shared_path %>/log/puma_error.log',
+stdout_redirect '<%= node.app_shared_path %>/log/puma-access.log',
+                '<%= node.app_shared_path %>/log/puma-error.log',
                 true
 
 # Disable request logging.
